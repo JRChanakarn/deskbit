@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deskbit — a pixel office for your Claude Code sessions</title>
+    <meta name="description" content="Every Claude Code session you run becomes a worker at a desk. See who's busy, who's waiting for you, and jump to their terminal." />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#e8d5b9" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Deskbit" />
+    <meta property="og:url" content="https://jrchanakarn.github.io/deskbit/" />
+    <meta property="og:title" content="Deskbit — a pixel office for your Claude Code sessions" />
+    <meta property="og:description" content="Every session you run becomes a worker at a desk. See who's busy, who needs your answer, and jump to their terminal. Runs on your Mac." />
+    <meta property="og:image" content="https://jrchanakarn.github.io/deskbit/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A pixel-art office: rooms named after git repos, workers at desks with speech bubbles, and a lounge." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // pick the language before first paint: ?lang= > saved choice > English
+      (function () {
+        var asked = new URLSearchParams(location.search).get("lang");
+        var saved = null;
+        try { saved = localStorage.getItem("deskbit.lang"); } catch (e) {}
+        var lang = asked || saved || "en";
+        document.documentElement.lang = lang === "th" ? "th" : "en";
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Thai:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <a class="logo" href="#top">Deskbit</a>
+      <nav>
+        <a href="#start"><span data-lang="en">Get started</span><span data-lang="th">เริ่มใช้งาน</span></a>
+        <a href="#terminals"><span data-lang="en">Terminals</span><span data-lang="th">เทอร์มินัล</span></a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="plate small bar-support" href="https://ko-fi.com/jrchanakarn" rel="noopener">☕ <span data-lang="en">Support</span><span data-lang="th">สนับสนุน</span></a>
+      <button id="lang" type="button"><span data-lang="en">ไทย</span><span data-lang="th">EN</span></button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <h1>
+          <span data-lang="en">A pixel office for your Claude Code sessions</span>
+          <span data-lang="th">ออฟฟิศพิกเซลของ Claude Code ทุก session</span>
+        </h1>
+        <p class="lede" data-lang="en">
+          Every session you run becomes a worker at a desk. See at a glance who's busy, who's stuck waiting for your answer,
+          and click anyone to jump straight to their terminal.
+        </p>
+        <p class="lede" data-lang="th">
+          ทุก session ที่คุณเปิดจะกลายเป็นพนักงานหนึ่งคนในออฟฟิศ ดูได้ทันทีว่าใครกำลังทำงาน ใครรอคุณตอบอยู่
+          แล้วคลิกที่ตัวละครเพื่อกระโดดไปที่เทอร์มินัลของ session นั้นได้เลย
+        </p>
+        <div class="actions">
+          <a class="plate" href="#start"><span data-lang="en">Get started</span><span data-lang="th">เริ่มใช้งาน</span></a>
+          <a class="quiet" id="full-demo" href="demo/"><span data-lang="en">Open the demo full screen</span><span data-lang="th">เปิดเดโมเต็มจอ</span></a>
+        </div>
+
+        <figure class="window">
+          <iframe id="demo" src="demo/" title="Deskbit live demo" loading="eager"></iframe>
+          <button class="wake" type="button" id="wake">
+            <span data-lang="en">Click to play with the demo</span><span data-lang="th">คลิกเพื่อลองเล่นเดโม</span>
+          </button>
+          <figcaption>
+            <span data-lang="en">Live demo with scripted sessions, running in your browser. The real app shows your own sessions.</span>
+            <span data-lang="th">เดโมนี้ใช้ session จำลองที่รันในเบราว์เซอร์ ส่วนแอปจริงจะแสดง session ของคุณเอง</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="legend" aria-labelledby="legend-title">
+        <h2 class="sign" id="legend-title"><span data-lang="en">Reading the office</span><span data-lang="th">ดูออฟฟิศยังไง</span></h2>
+        <dl>
+          <div>
+            <dt><i class="sprite typing" aria-hidden="true"></i><span data-lang="en">At the desk, typing</span><span data-lang="th">นั่งพิมพ์ที่โต๊ะ</span></dt>
+            <dd data-lang="en">The session is working. The bubble shows the tool and file, never your prompt.</dd>
+            <dd data-lang="th">session กำลังทำงาน บับเบิลบอกเครื่องมือและไฟล์ที่ใช้ ไม่แสดงข้อความที่คุณพิมพ์</dd>
+          </div>
+          <div class="alert">
+            <dt><i class="sprite waiting" aria-hidden="true"></i><span data-lang="en">Standing up, red bubble</span><span data-lang="th">ยืนขึ้นพร้อมบับเบิลแดง</span></dt>
+            <dd data-lang="en">It needs you: a permission prompt or a question. A soft ding plays so you notice.</dd>
+            <dd data-lang="th">รอคุณอยู่ เช่น ขออนุญาตรันคำสั่ง หรือมีคำถาม จะมีเสียงเตือนเบาๆ ให้รู้ตัว</dd>
+          </div>
+          <div>
+            <dt><i class="sprite idle" aria-hidden="true"></i><span data-lang="en">In the lounge</span><span data-lang="th">อยู่ในห้องพัก</span></dt>
+            <dd data-lang="en">The task is done and the session is idle. It walks back to its desk when you give it work.</dd>
+            <dd data-lang="th">ทำงานเสร็จแล้วและว่างอยู่ เมื่อสั่งงานใหม่จะเดินกลับไปที่โต๊ะเอง</dd>
+          </div>
+          <div>
+            <dt><i class="sprite intern" aria-hidden="true"></i><span data-lang="en">A new face nearby</span><span data-lang="th">มีคนใหม่มานั่งข้างๆ</span></dt>
+            <dd data-lang="en">A subagent joined as an intern, sitting next to the session that started it.</dd>
+            <dd data-lang="th">subagent มาช่วยงานในฐานะเด็กฝึกงาน นั่งข้าง session ที่เรียกมา</dd>
+          </div>
+        </dl>
+        <p class="note" data-lang="en">Each git repository gets its own room. Worktrees of the same repo share it.</p>
+        <p class="note" data-lang="th">แต่ละ git repo จะได้ห้องของตัวเอง ส่วน worktree ของ repo เดียวกันจะอยู่ห้องเดียวกัน</p>
+      </section>
+
+      <section id="start" aria-labelledby="start-title">
+        <h2 class="sign" id="start-title"><span data-lang="en">Get started</span><span data-lang="th">เริ่มใช้งาน</span></h2>
+        <p class="note" data-lang="en">You need a Mac with Claude Code installed. Setup takes about two minutes.</p>
+        <p class="note" data-lang="th">ต้องใช้ Mac ที่ติดตั้ง Claude Code แล้ว ใช้เวลาตั้งค่าประมาณ 2 นาที</p>
+        <ol class="floors">
+          <li>
+            <h3><span data-lang="en">Install Bun</span><span data-lang="th">ติดตั้ง Bun</span></h3>
+            <p data-lang="en">Deskbit runs on Bun. Skip this if <code>bun --version</code> already works.</p>
+            <p data-lang="th">Deskbit รันบน Bun ถ้าพิมพ์ <code>bun --version</code> แล้วขึ้นเลขเวอร์ชันอยู่แล้ว ข้ามขั้นนี้ได้เลย</p>
+            <pre><code>curl -fsSL https://bun.sh/install | bash</code></pre>
+          </li>
+          <li>
+            <h3><span data-lang="en">Download Deskbit</span><span data-lang="th">ดาวน์โหลด Deskbit</span></h3>
+            <p data-lang="en">Free, from GitHub. Unzip it anywhere.</p>
+            <p data-lang="th">โหลดฟรีจาก GitHub แล้วแตกไฟล์ไว้ที่ไหนก็ได้</p>
+            <a class="plate small" href="https://github.com/JRChanakarn/deskbit/releases/latest" rel="noopener"><span data-lang="en">Download for macOS</span><span data-lang="th">ดาวน์โหลดสำหรับ macOS</span></a>
+          </li>
+          <li>
+            <h3><span data-lang="en">Start the office</span><span data-lang="th">เปิดออฟฟิศ</span></h3>
+            <pre><code>cd deskbit
+bun install
+bun start</code></pre>
+          </li>
+          <li>
+            <h3><span data-lang="en">Open it</span><span data-lang="th">เปิดดู</span></h3>
+            <p data-lang="en">Go to <a href="http://localhost:7777">localhost:7777</a>, then run <code>claude</code> in any terminal. Your first worker walks in within a second.</p>
+            <p data-lang="th">เข้า <a href="http://localhost:7777">localhost:7777</a> แล้วเปิด <code>claude</code> ในเทอร์มินัลไหนก็ได้ พนักงานคนแรกจะเดินเข้ามาภายในวินาทีเดียว</p>
+          </li>
+        </ol>
+        <details class="extra">
+          <summary><span data-lang="en">Keep it running in the background</span><span data-lang="th">ให้รันเบื้องหลังตลอด</span></summary>
+          <p data-lang="en">Start Deskbit at login so the office is always one tab away:</p>
+          <p data-lang="th">ให้ Deskbit เปิดเองทุกครั้งที่ล็อกอิน จะได้เปิดแท็บดูได้ตลอด</p>
+          <pre><code>zsh scripts/autostart.sh install</code></pre>
+          <p data-lang="en">To stop it, run the same command with <code>uninstall</code>.</p>
+          <p data-lang="th">ถ้าจะเลิกใช้ รันคำสั่งเดิมแต่เปลี่ยนเป็น <code>uninstall</code></p>
+        </details>
+      </section>
+
+      <section id="terminals" aria-labelledby="terminals-title">
+        <h2 class="sign" id="terminals-title"><span data-lang="en">Works with your terminal</span><span data-lang="th">ใช้กับเทอร์มินัลของคุณได้</span></h2>
+        <p class="note" data-lang="en">Deskbit sees every session wherever it runs. What a click does depends on the terminal:</p>
+        <p class="note" data-lang="th">Deskbit เห็นทุก session ไม่ว่าจะเปิดในเทอร์มินัลไหน ส่วนการคลิกจะทำอะไรได้ขึ้นอยู่กับเทอร์มินัล</p>
+        <table>
+          <thead>
+            <tr>
+              <th><span data-lang="en">Terminal</span><span data-lang="th">เทอร์มินัล</span></th>
+              <th><span data-lang="en">Click a worker</span><span data-lang="th">คลิกที่พนักงาน</span></th>
+              <th><span data-lang="en">Live state</span><span data-lang="th">สถานะสด</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Otty</td>
+              <td><span data-lang="en">Opens the exact tab</span><span data-lang="th">เปิดแท็บนั้นตรงๆ</span></td>
+              <td><span data-lang="en">From Otty too</span><span data-lang="th">ใช้ข้อมูลจาก Otty ด้วย</span></td>
+            </tr>
+            <tr>
+              <td>Herdr</td>
+              <td><span data-lang="en">Focuses the exact pane</span><span data-lang="th">โฟกัส pane นั้นตรงๆ</span></td>
+              <td><span data-lang="en">From Herdr too</span><span data-lang="th">ใช้ข้อมูลจาก Herdr ด้วย</span></td>
+            </tr>
+            <tr>
+              <td>tmux</td>
+              <td><span data-lang="en">Switches to the exact pane</span><span data-lang="th">สลับไป pane นั้นตรงๆ</span></td>
+              <td><span data-lang="en">From Claude Code</span><span data-lang="th">จาก Claude Code</span></td>
+            </tr>
+            <tr>
+              <td><span data-lang="en">Ghostty, iTerm2, Terminal, VS Code and others</span><span data-lang="th">Ghostty, iTerm2, Terminal, VS Code และอื่นๆ</span></td>
+              <td><span data-lang="en">Brings the app to the front</span><span data-lang="th">ดึงแอปขึ้นมาข้างหน้า</span></td>
+              <td><span data-lang="en">From Claude Code</span><span data-lang="th">จาก Claude Code</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="private" aria-labelledby="private-title">
+        <h2 class="sign" id="private-title"><span data-lang="en">Stays on your machine</span><span data-lang="th">ข้อมูลอยู่ในเครื่องคุณ</span></h2>
+        <ul>
+          <li data-lang="en">Listens on 127.0.0.1 only. Other devices on your network can't open it.</li>
+          <li data-lang="th">รับการเชื่อมต่อจาก 127.0.0.1 เท่านั้น เครื่องอื่นในเครือข่ายเปิดไม่ได้</li>
+          <li data-lang="en">Read-only: it reads the files Claude Code already writes and never changes your settings or hooks.</li>
+          <li data-lang="th">อ่านอย่างเดียว ใช้แค่ไฟล์ที่ Claude Code เขียนไว้อยู่แล้ว ไม่แตะ settings หรือ hooks ของคุณ</li>
+          <li data-lang="en">Nothing is sent anywhere, and your prompts never appear on screen.</li>
+          <li data-lang="th">ไม่ส่งข้อมูลออกไปที่ไหน และไม่แสดงข้อความที่คุณพิมพ์สั่ง Claude บนจอ</li>
+        </ul>
+      </section>
+
+      <section id="faq" aria-labelledby="faq-title">
+        <h2 class="sign" id="faq-title">FAQ</h2>
+        <details>
+          <summary><span data-lang="en">Does it use my Claude tokens?</span><span data-lang="th">เปลือง token ของ Claude ไหม</span></summary>
+          <p data-lang="en">No. It only reads files on your disk. It never talks to Claude.</p>
+          <p data-lang="th">ไม่เปลืองเลย มันแค่อ่านไฟล์ในเครื่อง ไม่ได้คุยกับ Claude</p>
+        </details>
+        <details>
+          <summary><span data-lang="en">Does it work on Linux or Windows?</span><span data-lang="th">ใช้บน Linux หรือ Windows ได้ไหม</span></summary>
+          <p data-lang="en">It's built and tested on macOS. On Linux the office works and tmux and Herdr panes can be focused, but it's less tested. Windows isn't supported yet.</p>
+          <p data-lang="th">ทำและทดสอบบน macOS บน Linux ตัวออฟฟิศใช้ได้ และคลิกไป pane ของ tmux กับ Herdr ได้ แต่ยังทดสอบไม่มาก ส่วน Windows ยังไม่รองรับ</p>
+        </details>
+        <details>
+          <summary><span data-lang="en">Can I use another port?</span><span data-lang="th">เปลี่ยนพอร์ตได้ไหม</span></summary>
+          <p data-lang="en">Yes: <code>PORT=8080 bun start</code>. If you moved Claude's folder with <code>CLAUDE_CONFIG_DIR</code>, Deskbit follows it.</p>
+          <p data-lang="th">ได้ ใช้ <code>PORT=8080 bun start</code> และถ้าคุณย้ายโฟลเดอร์ของ Claude ด้วย <code>CLAUDE_CONFIG_DIR</code> ตัว Deskbit ก็จะตามไปอ่านที่นั่นเอง</p>
+        </details>
+        <details>
+          <summary><span data-lang="en">What about Codex, Cursor or other agents?</span><span data-lang="th">ใช้กับ Codex, Cursor หรือ agent อื่นได้ไหม</span></summary>
+          <p data-lang="en">Claude Code only for now.</p>
+          <p data-lang="th">ตอนนี้รองรับเฉพาะ Claude Code</p>
+        </details>
+      </section>
+
+      <section class="counter" id="support" aria-labelledby="counter-title">
+        <h2 class="sign" id="counter-title"><span data-lang="en">Buy the team a coffee</span><span data-lang="th">เลี้ยงกาแฟทีมหน่อย</span></h2>
+        <div class="counter-scene">
+          <div class="counter-art" aria-hidden="true">
+            <i class="px plant"></i>
+            <i class="px barista"></i>
+            <i class="px table"><i class="px cup one"></i><i class="px cup two"></i></i>
+          </div>
+          <div class="counter-copy">
+            <p data-lang="en">Deskbit is free and made by one person. Every coffee keeps the office open a little longer.</p>
+            <p data-lang="th">Deskbit ใช้ฟรีและทำโดยคนคนเดียว กาแฟทุกแก้วช่วยให้ออฟฟิศนี้เปิดต่อไปได้อีกหน่อย</p>
+            <a class="plate" href="https://ko-fi.com/jrchanakarn" rel="noopener"><span data-lang="en">☕ Buy a coffee on Ko-fi</span><span data-lang="th">☕ เลี้ยงกาแฟผ่าน Ko-fi</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <span data-lang="en">Pixel art from</span><span data-lang="th">ภาพพิกเซลจาก</span>
+        <a href="https://github.com/pixel-agents-hq/pixel-agents" rel="noopener">Pixel Agents</a>
+        <span data-lang="en">by Pablo De Lucca (MIT).</span><span data-lang="th">โดย Pablo De Lucca (MIT)</span>
+      </p>
+      <p>
+        <span data-lang="en">Deskbit is an independent project, not made by or affiliated with Anthropic. Claude is a trademark of Anthropic.</span>
+        <span data-lang="th">Deskbit เป็นโปรเจกต์อิสระ ไม่ได้ทำโดยหรือเกี่ยวข้องกับ Anthropic ส่วน Claude เป็นเครื่องหมายการค้าของ Anthropic</span>
+      </p>
+    </footer>
+
+    <script src="site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-demo="1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deskbit</title>
+    
+  <link rel="stylesheet" crossorigin href="./chunk-7a4b3b86.css"><script type="module" crossorigin src="./chunk-kjrzs0ex.js"></script></head>
+  <body>
+    <div id="stage"></div>
+
+    <header id="hud">
+      <div class="brand">🏢 Deskbit</div>
+      <div class="counts">
+        <span class="chip" data-i18n-title="workingTitle">🟢 <span data-i18n="working">Working</span> <b id="count-working">0</b></span>
+        <span class="chip" id="chip-waiting" data-i18n-title="waitingTitle">🔴 <span data-i18n="waiting">Waiting</span> <b id="count-waiting">0</b></span>
+        <span class="chip" data-i18n-title="idleTitle">💤 <span data-i18n="idle">Idle</span> <b id="count-idle">0</b></span>
+        <span class="chip" id="chip-interns" data-i18n-title="internsTitle" hidden>🧑‍🎓 <span data-i18n="interns">Interns</span> <b id="count-interns">0</b></span>
+      </div>
+      <div class="actions">
+        <button id="sound-waiting" data-i18n="soundWaiting" data-i18n-title="soundWaitingTitle">🔔 Waiting</button>
+        <button id="sound-done" data-i18n="soundDone" data-i18n-title="soundDoneTitle">🎵 Done</button>
+        <button id="fit" data-i18n="fit" data-i18n-title="fitTitle">⤢ Fit</button>
+        <button id="lang" data-i18n="otherLang" data-i18n-title="otherLangTitle">ไทย</button>
+        <span id="conn"></span>
+      </div>
+    </header>
+
+    <div id="unlock" class="pill" data-i18n="unlock">🔈 Click anywhere to turn on sound</div>
+    <div id="card" hidden></div>
+    <div id="toast" hidden></div>
+    <div id="empty" hidden>
+      <div class="empty-title" data-i18n="emptyTitle">The office is empty</div>
+      <div data-i18n="emptyBody">Start <code>claude</code> in a terminal and your team will walk in.</div>
+    </div>
+
+    <footer id="credit">
+      <a id="support" href="https://ko-fi.com/jrchanakarn" target="_blank" rel="noopener" data-i18n="support">☕ Support Deskbit</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/pixel-agents-hq/pixel-agents" target="_blank" rel="noopener">Art: Pixel Agents © Pablo De Lucca (MIT)</a>
+    </footer>
+
+    
+  </body>
+</html>

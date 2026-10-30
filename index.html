@@ -122,8 +122,8 @@
             <p data-lang="en">Free, from GitHub. Unzip it anywhere.</p>
             <p data-lang="th">โหลดฟรีจาก GitHub แล้วแตกไฟล์ไว้ที่ไหนก็ได้</p>
             <a class="plate small" href="https://github.com/JRChanakarn/deskbit/releases/latest" rel="noopener"><span data-lang="en">Download for macOS</span><span data-lang="th">ดาวน์โหลดสำหรับ macOS</span></a>
-            <p class="version" data-lang="en">Latest version: 1.0.2. <a href="patch-notes.html">See what's new</a></p>
-            <p class="version" data-lang="th">เวอร์ชันล่าสุด 1.0.2 <a href="patch-notes.html">ดูว่ามีอะไรใหม่</a></p>
+            <p class="version" data-lang="en">Latest version: 1.0.3. <a href="patch-notes.html">See what's new</a></p>
+            <p class="version" data-lang="th">เวอร์ชันล่าสุด 1.0.3 <a href="patch-notes.html">ดูว่ามีอะไรใหม่</a></p>
           </li>
           <li>
             <h3><span data-lang="en">Start the office</span><span data-lang="th">เปิดออฟฟิศ</span></h3>
@@ -207,6 +207,11 @@ bun start</code></pre>
           <summary><span data-lang="en">Does it work on Linux or Windows?</span><span data-lang="th">ใช้บน Linux หรือ Windows ได้ไหม</span></summary>
           <p data-lang="en">It's built and tested on macOS. On Linux the office works and tmux and Herdr panes can be focused, but it's less tested. Windows isn't supported yet.</p>
           <p data-lang="th">ทำและทดสอบบน macOS บน Linux ตัวออฟฟิศใช้ได้ และคลิกไป pane ของ tmux กับ Herdr ได้ แต่ยังทดสอบไม่มาก ส่วน Windows ยังไม่รองรับ</p>
+        </details>
+        <details>
+          <summary><span data-lang="en">It says Deskbit is already running, or the port is in use</span><span data-lang="th">ขึ้นว่า Deskbit เปิดอยู่แล้ว หรือพอร์ตถูกใช้อยู่</span></summary>
+          <p data-lang="en">If Deskbit is already running, often because you set it to start at login, just open <a href="http://localhost:7777">localhost:7777</a>. To run a second copy, or if another app holds the port, use a different one: <code>PORT=7778 bun start</code>.</p>
+          <p data-lang="th">ถ้า Deskbit เปิดอยู่แล้ว ซึ่งมักเป็นเพราะตั้งให้เปิดเองตอนล็อกอินไว้ ให้เข้า <a href="http://localhost:7777">localhost:7777</a> ได้เลย ถ้าอยากรันอีกตัว หรือพอร์ตถูกโปรแกรมอื่นใช้อยู่ ให้ใช้พอร์ตอื่น: <code>PORT=7778 bun start</code></p>
         </details>
         <details>
           <summary><span data-lang="en">Can I use another port?</span><span data-lang="th">เปลี่ยนพอร์ตได้ไหม</span></summary>

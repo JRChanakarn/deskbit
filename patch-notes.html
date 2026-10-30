@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Patch notes — Deskbit</title>
+    <meta name="description" content="What changed in each version of Deskbit." />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#e8d5b9" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Deskbit" />
+    <meta property="og:url" content="https://jrchanakarn.github.io/deskbit/patch-notes.html" />
+    <meta property="og:title" content="Deskbit patch notes" />
+    <meta property="og:description" content="Every session you run becomes a worker at a desk. See who's busy, who needs your answer, and jump to their terminal. Runs on your Mac." />
+    <meta property="og:image" content="https://jrchanakarn.github.io/deskbit/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A pixel-art office: rooms named after git repos, workers at desks with speech bubbles, and a lounge." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // pick the language before first paint: ?lang= > saved choice > English
+      (function () {
+        var asked = new URLSearchParams(location.search).get("lang");
+        var saved = null;
+        try { saved = localStorage.getItem("deskbit.lang"); } catch (e) {}
+        var lang = asked || saved || "en";
+        document.documentElement.lang = lang === "th" ? "th" : "en";
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Thai:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <a class="logo" href="./">Deskbit</a>
+      <nav>
+        <a href="./#start"><span data-lang="en">Get started</span><span data-lang="th">เริ่มใช้งาน</span></a>
+        <a href="./#terminals"><span data-lang="en">Terminals</span><span data-lang="th">เทอร์มินัล</span></a>
+        <a href="./#faq">FAQ</a>
+        <a href="patch-notes.html" aria-current="page"><span data-lang="en">Patch notes</span><span data-lang="th">อัปเดต</span></a>
+      </nav>
+      <a class="plate small bar-support" href="https://ko-fi.com/jrchanakarn" rel="noopener">☕ <span data-lang="en">Support</span><span data-lang="th">สนับสนุน</span></a>
+      <button id="lang" type="button"><span data-lang="en">ไทย</span><span data-lang="th">EN</span></button>
+    </header>
+
+    <main id="top" class="notes-page">
+      <h1 class="sign"><span data-lang="en">Patch notes</span><span data-lang="th">บันทึกการอัปเดต</span></h1>
+      <p class="note" data-lang="en">What changed in each version. The latest download is always on <a href="https://github.com/JRChanakarn/deskbit/releases/latest" rel="noopener">GitHub</a>.</p>
+      <p class="note" data-lang="th">แต่ละเวอร์ชันมีอะไรเปลี่ยนบ้าง ไฟล์เวอร์ชันล่าสุดดาวน์โหลดได้ที่ <a href="https://github.com/JRChanakarn/deskbit/releases/latest" rel="noopener">GitHub</a> เสมอ</p>
+      <div class="releases">
+<article class="release" id="v1.0.2"><h2>1.0.2 <span class="latest"><span data-lang="en">Latest</span><span data-lang="th">ล่าสุด</span></span></h2><time datetime="2026-10-30">2026-10-30</time><div data-lang="en"><ul><li>When the Herdr window or a tmux client runs inside an Otty tab, clicking a worker now switches Otty to that tab, not just to Otty.</li></ul></div><div data-lang="th"><ul><li>ถ้าหน้าต่าง Herdr หรือ tmux เปิดอยู่ในแท็บของ Otty คลิกตัวละครแล้ว Otty จะสลับไปที่แท็บนั้นให้เลย ไม่ใช่แค่เปิดแอป Otty ขึ้นมา</li></ul></div></article>
+<article class="release" id="v1.0.1"><h2>1.0.1</h2><time datetime="2026-10-30">2026-10-30</time><div data-lang="en"><ul><li>Clicking a worker whose Herdr or tmux session isn't open in any window (no Herdr window, or a detached tmux session such as claude-squad's) now says so and copies the command that opens it (<code>herdr</code>, <code>tmux attach -t …</code>), instead of silently doing nothing.</li></ul></div><div data-lang="th"><ul><li>คลิกตัวละครที่อยู่ใน Herdr หรือ tmux ซึ่งไม่ได้เปิดอยู่ในหน้าต่างไหน (ไม่มีหน้าต่าง Herdr เปิดอยู่ หรือเป็น tmux ที่รันเบื้องหลังแบบของ claude-squad) จะมีข้อความบอก และคัดลอกคำสั่งเปิด (<code>herdr</code>, <code>tmux attach -t …</code>) ให้ แทนที่จะเงียบไปเฉยๆ</li></ul></div></article>
+<article class="release" id="v1.0.0"><h2>1.0.0</h2><time datetime="2026-10-30">2026-10-30</time><div data-lang="en"><ul><li>A pixel office for Claude Code: one room per git repo, one worker per running session, interns for subagents, a shared lounge for whoever is idle.</li><li>Workers type, read, browse, think at the whiteboard, and stand up with a red bubble when they need you. Bubbles show the tool and file, never your prompt.</li><li>Click a worker to jump to its terminal: the exact tab in Otty, the exact pane in Herdr or tmux, or the right app for Ghostty, iTerm2, Terminal, VS Code and others.</li><li>A ding when someone needs you, a chime when work is done.</li><li>English and Thai.</li><li>Runs on your Mac only (127.0.0.1), read-only.</li></ul></div><div data-lang="th"><ul><li>ออฟฟิศพิกเซลสำหรับ Claude Code: หนึ่งห้องต่อหนึ่ง git repo หนึ่งตัวละครต่อหนึ่ง session ที่เปิดอยู่ subagent มาเป็นเด็กฝึกงาน และมีห้องพักรวมให้คนที่ว่างอยู่</li><li>ตัวละครนั่งพิมพ์ อ่าน ค้นเว็บ ยืนคิดที่ไวท์บอร์ด และลุกขึ้นพร้อมบับเบิลแดงเมื่อรอคุณอยู่ บับเบิลบอกเครื่องมือและไฟล์ที่ใช้ ไม่แสดงข้อความที่คุณพิมพ์</li><li>คลิกตัวละครเพื่อไปที่เทอร์มินัล: แท็บนั้นใน Otty, pane นั้นใน Herdr หรือ tmux หรือดึงแอปขึ้นมาสำหรับ Ghostty, iTerm2, Terminal, VS Code และอื่นๆ</li><li>มีเสียงเตือนเมื่อมีคนรอคุณ และเสียงเบาๆ เมื่องานเสร็จ</li><li>ภาษาอังกฤษและไทย</li><li>ทำงานบน Mac ของคุณเท่านั้น (127.0.0.1) และอ่านอย่างเดียว</li></ul></div></article>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <span data-lang="en">Pixel art from</span><span data-lang="th">ภาพพิกเซลจาก</span>
+        <a href="https://github.com/pixel-agents-hq/pixel-agents" rel="noopener">Pixel Agents</a>
+        <span data-lang="en">by Pablo De Lucca (MIT).</span><span data-lang="th">โดย Pablo De Lucca (MIT)</span>
+      </p>
+      <p>
+        <span data-lang="en">Deskbit is an independent project, not made by or affiliated with Anthropic. Claude is a trademark of Anthropic.</span>
+        <span data-lang="th">Deskbit เป็นโปรเจกต์อิสระ ไม่ได้ทำโดยหรือเกี่ยวข้องกับ Anthropic ส่วน Claude เป็นเครื่องหมายการค้าของ Anthropic</span>
+      </p>
+    </footer>
+
+    <script src="site.js"></script>
+  </body>
+</html>

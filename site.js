@@ -6,6 +6,8 @@
   var fullDemo = document.getElementById("full-demo");
 
   function syncDemo() {
+    // only the landing page has the demo window
+    if (!demo) return;
     var src = "demo/?lang=" + root.lang;
     if (demo.getAttribute("src") !== src) demo.setAttribute("src", src);
     fullDemo.setAttribute("href", src);
@@ -23,10 +25,11 @@
 
   // The office zooms on scroll; keep the page scrollable until someone asks to play.
   var wake = document.getElementById("wake");
-  wake.addEventListener("click", function () {
-    wake.hidden = true;
-    demo.focus();
-  });
+  if (wake)
+    wake.addEventListener("click", function () {
+      wake.hidden = true;
+      demo.focus();
+    });
 
   syncDemo();
 })();

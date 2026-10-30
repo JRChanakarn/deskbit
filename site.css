@@ -97,6 +97,7 @@ pre code {
 }
 
 .bar nav a {
+  white-space: nowrap;
   text-decoration: none;
   font-weight: 600;
   color: var(--ink-soft);
@@ -436,6 +437,85 @@ td:first-child {
   font-weight: 600;
 }
 
+/* ── patch notes ── */
+
+.notes-page {
+  padding-top: 40px;
+}
+
+.releases {
+  margin: 28px 0 88px;
+  max-width: 760px;
+}
+
+/* a timeline: one stop per version, newest on top */
+.release {
+  position: relative;
+  padding: 0 0 36px 30px;
+  border-left: 2px solid var(--wall-deep);
+}
+
+.release:last-child {
+  border-left-color: transparent;
+}
+
+.release::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--sign);
+  border: 2px solid var(--night);
+}
+
+.release h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font: 700 26px/1.1 var(--display);
+}
+
+.release time {
+  display: block;
+  margin: 4px 0 10px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.release ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.release li {
+  margin: 6px 0;
+  max-width: 64ch;
+}
+
+.latest {
+  font: 600 13px var(--body);
+  color: var(--sign);
+  background: var(--night);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.version {
+  margin: 10px 0 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.bar nav a[aria-current="page"] {
+  color: var(--night);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
 /* ── privacy ── */
 
 .private ul {
@@ -559,7 +639,9 @@ footer p {
     font-size: 14px;
   }
 
-  .bar nav a[href="#terminals"],
+  /* phones keep the two links people need first */
+  .bar nav a[href$="#terminals"],
+  .bar nav a[href$="#faq"],
   .bar-support {
     display: none;
   }

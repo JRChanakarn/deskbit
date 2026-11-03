@@ -122,8 +122,8 @@
             <p data-lang="en">Free, from GitHub. Unzip it anywhere.</p>
             <p data-lang="th">โหลดฟรีจาก GitHub แล้วแตกไฟล์ไว้ที่ไหนก็ได้</p>
             <a class="plate small" href="https://github.com/JRChanakarn/deskbit/releases/latest" rel="noopener"><span data-lang="en">Download for macOS</span><span data-lang="th">ดาวน์โหลดสำหรับ macOS</span></a>
-            <p class="version" data-lang="en">Latest version: 1.0.3. <a href="patch-notes.html">See what's new</a></p>
-            <p class="version" data-lang="th">เวอร์ชันล่าสุด 1.0.3 <a href="patch-notes.html">ดูว่ามีอะไรใหม่</a></p>
+            <p class="version" data-lang="en">Latest version: 1.1.0. <a href="patch-notes.html">See what's new</a></p>
+            <p class="version" data-lang="th">เวอร์ชันล่าสุด 1.1.0 <a href="patch-notes.html">ดูว่ามีอะไรใหม่</a></p>
           </li>
           <li>
             <h3><span data-lang="en">Start the office</span><span data-lang="th">เปิดออฟฟิศ</span></h3>
@@ -176,12 +176,19 @@ bun start</code></pre>
               <td><span data-lang="en">From Claude Code</span><span data-lang="th">จาก Claude Code</span></td>
             </tr>
             <tr>
-              <td><span data-lang="en">Ghostty, iTerm2, Terminal, VS Code and others</span><span data-lang="th">Ghostty, iTerm2, Terminal, VS Code และอื่นๆ</span></td>
+              <td><span data-lang="en">Terminal, Ghostty 1.3 or later</span><span data-lang="th">Terminal, Ghostty 1.3 ขึ้นไป</span></td>
+              <td><span data-lang="en">Switches to the exact tab (macOS asks once to let Deskbit control the app)</span><span data-lang="th">สลับไปแท็บนั้นตรงๆ (ครั้งแรก macOS จะถามว่าให้ Deskbit ควบคุมแอปได้ไหม)</span></td>
+              <td><span data-lang="en">From Claude Code</span><span data-lang="th">จาก Claude Code</span></td>
+            </tr>
+            <tr>
+              <td><span data-lang="en">iTerm2, VS Code and others</span><span data-lang="th">iTerm2, VS Code และอื่นๆ</span></td>
               <td><span data-lang="en">Brings the app to the front</span><span data-lang="th">ดึงแอปขึ้นมาข้างหน้า</span></td>
               <td><span data-lang="en">From Claude Code</span><span data-lang="th">จาก Claude Code</span></td>
             </tr>
           </tbody>
         </table>
+        <p class="note" data-lang="en">Only sessions on this Mac show up. One you open on another machine, over SSH or with Herdr's <code>--machine</code>, runs there, so Deskbit can't see it.</p>
+        <p class="note" data-lang="th">เห็นเฉพาะ session ที่รันบน Mac เครื่องนี้ ถ้าเปิดบนเครื่องอื่นผ่าน SSH หรือ <code>--machine</code> ของ Herdr ตัว session จะรันอยู่ที่เครื่องนั้น Deskbit จึงมองไม่เห็น</p>
       </section>
 
       <section class="private" aria-labelledby="private-title">
@@ -220,8 +227,8 @@ bun start</code></pre>
         </details>
         <details>
           <summary><span data-lang="en">What about Codex, Cursor or other agents?</span><span data-lang="th">ใช้กับ Codex, Cursor หรือ agent อื่นได้ไหม</span></summary>
-          <p data-lang="en">Claude Code only for now.</p>
-          <p data-lang="th">ตอนนี้รองรับเฉพาะ Claude Code</p>
+          <p data-lang="en">Codex works in any terminal, with the same bubbles as Claude. Gemini, Cursor, OpenCode, Amp and others show up when they run in Herdr or Otty, as working, waiting or idle. Codex doesn't record when it's waiting for your approval, so its red bubble only shows when it runs in Herdr.</p>
+          <p data-lang="th">Codex ใช้ได้ในทุกเทอร์มินัล และมีบับเบิลบอกงานเหมือน Claude ส่วน Gemini, Cursor, OpenCode, Amp และตัวอื่นๆ จะขึ้นในออฟฟิศเมื่อเปิดใน Herdr หรือ Otty โดยบอกได้ว่ากำลังทำงาน รอตอบ หรือว่าง ส่วน Codex ไม่ได้บันทึกไว้ว่ากำลังรอให้คุณอนุมัติ บับเบิลแดงของ Codex จึงขึ้นเฉพาะตอนเปิดใน Herdr</p>
         </details>
       </section>
 
